@@ -1,4 +1,4 @@
-package com.rohitneel.dailynews.articles
+package com.rohitneel.dailynews.articles.data
 
 class ArticleRepository(
     private val dataSource: ArticleDataSource,

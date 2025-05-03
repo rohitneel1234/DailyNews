@@ -30,8 +30,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import com.rohitneel.dailynews.articles.Article
-import com.rohitneel.dailynews.articles.ArticleViewModel
+import com.rohitneel.dailynews.articles.application.Article
+import com.rohitneel.dailynews.articles.presentation.ArticleViewModel
 import com.rohitneel.dailynews.components.ShimmerEffectMain
 import com.rohitneel.dailynews.helper.koinInject
 

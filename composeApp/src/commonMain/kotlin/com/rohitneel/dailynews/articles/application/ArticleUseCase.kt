@@ -1,5 +1,7 @@
-package com.rohitneel.dailynews.articles
+package com.rohitneel.dailynews.articles.application
 
+import com.rohitneel.dailynews.articles.data.ArticleRaw
+import com.rohitneel.dailynews.articles.data.ArticleRepository
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone

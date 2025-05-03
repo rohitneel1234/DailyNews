@@ -1,4 +1,4 @@
-package com.rohitneel.dailynews
+package com.rohitneel.dailynews.navigation
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -11,6 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.rohitneel.dailynews.screens.AboutScreen
 import com.rohitneel.dailynews.screens.ArticleScreen
+import com.rohitneel.dailynews.screens.Screens
 
 @Composable
 fun AppScaffold() {

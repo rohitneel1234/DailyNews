@@ -1,4 +1,4 @@
-package com.rohitneel.dailynews.articles
+package com.rohitneel.dailynews.articles.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

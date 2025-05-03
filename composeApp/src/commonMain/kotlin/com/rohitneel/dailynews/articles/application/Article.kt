@@ -1,4 +1,4 @@
-package com.rohitneel.dailynews.articles
+package com.rohitneel.dailynews.articles.application
 
 data class Article(
     val title: String,

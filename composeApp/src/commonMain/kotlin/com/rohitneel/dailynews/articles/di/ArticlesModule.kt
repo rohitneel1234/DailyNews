@@ -1,10 +1,10 @@
 package com.rohitneel.dailynews.articles.di
 
-import com.rohitneel.dailynews.articles.ArticleDataSource
-import com.rohitneel.dailynews.articles.ArticleRepository
-import com.rohitneel.dailynews.articles.ArticleService
-import com.rohitneel.dailynews.articles.ArticleUseCase
-import com.rohitneel.dailynews.articles.ArticleViewModel
+import com.rohitneel.dailynews.articles.data.ArticleDataSource
+import com.rohitneel.dailynews.articles.data.ArticleRepository
+import com.rohitneel.dailynews.articles.data.ArticleService
+import com.rohitneel.dailynews.articles.application.ArticleUseCase
+import com.rohitneel.dailynews.articles.presentation.ArticleViewModel
 import org.koin.dsl.module
 
 

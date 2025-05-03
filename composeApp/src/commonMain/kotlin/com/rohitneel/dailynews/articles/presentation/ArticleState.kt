@@ -1,4 +1,6 @@
-package com.rohitneel.dailynews.articles
+package com.rohitneel.dailynews.articles.presentation
+
+import com.rohitneel.dailynews.articles.application.Article
 
 data class ArticleState(
     val article: List<Article> = listOf(),
