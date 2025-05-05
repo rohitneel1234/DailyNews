@@ -9,9 +9,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.rohitneel.dailynews.articles.application.Article
 import com.rohitneel.dailynews.screens.AboutScreen
+import com.rohitneel.dailynews.screens.ArticleDetailScreen
 import com.rohitneel.dailynews.screens.ArticleScreen
 import com.rohitneel.dailynews.screens.Screens
+import kotlinx.serialization.json.Json
 
 @Composable
 fun AppScaffold() {
@@ -39,7 +42,14 @@ fun AppNavHost(
         composable(Screens.ARTICLES.route) {
             ArticleScreen(
                 onAboutButtonClick = { navController.navigate(Screens.ABOUT.route) },
+                navController = navController
             )
+        }
+        composable(Screens.ARTICLE_DETAIL.route) {
+            navController.previousBackStackEntry?.savedStateHandle?.get<String>("article")?.let { article ->
+                val currentArticle: Article = Json.decodeFromString(article)
+                ArticleDetailScreen(currentArticle =  currentArticle, navController = navController)
+            }
         }
         composable(Screens.ABOUT.route) {
             AboutScreen(

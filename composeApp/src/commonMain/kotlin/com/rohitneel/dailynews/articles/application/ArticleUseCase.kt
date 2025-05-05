@@ -21,7 +21,8 @@ class ArticleUseCase(private val repository: ArticleRepository) {
             title = raw.title,
             desc = raw.description?: "Click to find out more",
             date = getDaysAgoString(raw.date),
-            imageUrl = raw.imageUrl ?: "https://image.cnbcfm.com/api/v1/image/107326078-1698758530118-gettyimages-1765623456-wall26362_igj6ehhp.jpg"
+            imageUrl = raw.imageUrl ?: "https://image.cnbcfm.com/api/v1/image/107326078-1698758530118-gettyimages-1765623456-wall26362_igj6ehhp.jpg",
+            content = raw.content?: "Content not available"
         )
     }
 

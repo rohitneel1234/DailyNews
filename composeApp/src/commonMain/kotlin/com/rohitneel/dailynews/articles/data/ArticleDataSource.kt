@@ -23,7 +23,8 @@ class ArticleDataSource(private val database: DailyNewsDatabase) {
             title = articlesRaw.title,
             description = articlesRaw.description,
             date = articlesRaw.date,
-            imageUrl = articlesRaw.imageUrl
+            imageUrl = articlesRaw.imageUrl,
+            content = articlesRaw.content
         )
     }
 
@@ -31,11 +32,13 @@ class ArticleDataSource(private val database: DailyNewsDatabase) {
         title: String,
         description: String?,
         date: String,
-        imageUrl: String?
+        imageUrl: String?,
+        content: String?
     ): ArticleRaw = ArticleRaw(
         title = title,
         description = description,
         date = date,
-        imageUrl = imageUrl
+        imageUrl = imageUrl,
+        content = content
     )
 }

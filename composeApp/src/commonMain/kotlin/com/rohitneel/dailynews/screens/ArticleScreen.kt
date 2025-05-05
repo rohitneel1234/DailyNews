@@ -1,5 +1,6 @@
 package com.rohitneel.dailynews.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -29,16 +30,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil3.compose.AsyncImage
 import com.rohitneel.dailynews.articles.application.Article
 import com.rohitneel.dailynews.articles.presentation.ArticleViewModel
 import com.rohitneel.dailynews.components.ShimmerEffectMain
 import com.rohitneel.dailynews.helper.koinInject
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 @Composable
 fun ArticleScreen(
     onAboutButtonClick:() -> Unit,
-    viewModel: ArticleViewModel = koinInject()
+    viewModel: ArticleViewModel = koinInject(),
+    navController: NavController
 ) {
     val articleState = viewModel.articleState.collectAsState()
 
@@ -49,7 +54,7 @@ fun ArticleScreen(
         if (articleState.value.error!=null)
             ErrorMessage(articleState.value.error!!)
         if (articleState.value.article.isNotEmpty())
-            ArticleListView(viewModel)
+            ArticleListView(viewModel, navController)
     }
 }
 
@@ -71,7 +76,7 @@ fun AppBar(onAboutButtonClick: () -> Unit) {
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ArticleListView(viewModel: ArticleViewModel) {
+fun ArticleListView(viewModel: ArticleViewModel, navController: NavController) {
     val pullRefreshState = rememberPullRefreshState(
         refreshing = viewModel.articleState.value.loading,
         onRefresh = { viewModel.getArticle(true) }
@@ -79,7 +84,13 @@ fun ArticleListView(viewModel: ArticleViewModel) {
     Box(modifier = Modifier.pullRefresh(pullRefreshState)) {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(viewModel.articleState.value.article) { article ->
-                ArticleItemView(article = article)
+                ArticleItemView(article = article, onClick = {
+                    val articleStr = Json.encodeToString(article)
+                    navController.currentBackStackEntry?.savedStateHandle?.apply {
+                        set("article", articleStr)
+                    }
+                    navController.navigate(Screens.ARTICLE_DETAIL.route)
+                })
             }
         }
         PullRefreshIndicator(
@@ -104,11 +115,12 @@ fun ErrorMessage(message: String) {
 }
 
 @Composable
-fun ArticleItemView(article: Article) {
+fun ArticleItemView(article: Article, onClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
+            .clickable { onClick() }
     ) {
         AsyncImage(
             model = article.imageUrl,
